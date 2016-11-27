@@ -1,8 +1,7 @@
+import com.sun.xml.internal.fastinfoset.util.CharArray;
 import org.jetbrains.annotations.Contract;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 /**
@@ -10,14 +9,17 @@ import java.util.Scanner;
  */
 public class Main {
 
-        public static void main(String[] args) throws IOException {
-            //int[] _numbers = {5, 1, 2, 3, 4, 5};
-            Scanner in = new Scanner(System.in);
+    private static String result = "";
 
-            final String fileName = "/home/mgumiero9/IdeaProjects/Anagram4/text.txt";
+    public static void main(String[] args) throws IOException {
+            //int[] _numbers = {5, 1, 2, 3, 4, 5};
+            //Scanner in = new Scanner(System.in);
+
+            final String fileName = "/home/mgumiero9/IdeaProjects/Anagram/text.txt";
             BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
             int res;
 
+            /* This block reads numbers entry
             int _numbers_size = 0;
             _numbers_size = Integer.parseInt(in.nextLine().trim());
             int[] _numbers = new int[_numbers_size];
@@ -32,7 +34,26 @@ public class Main {
             System.out.println(res);
             bw.newLine();
 
-            bw.close();
+            bw.close();*/
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("type something:");
+            String myEntry = bufferedReader.readLine();
+            System.out.println(myEntry);
+
+            int myLength = myEntry.length();
+
+            int upperLetterConter = 0, lowerLetterConter = 0;
+            for (int i = 0; i < myLength; i++) {
+                upperLetterConter = myLength - i -1;
+                lowerLetterConter = i;
+                //System.out.println(lowerLetterConter + " " + upperLetterConter+ " " + myLength);
+                if (myEntry.charAt(lowerLetterConter) != myEntry.charAt(upperLetterConter)) {
+                    result = "It's Not a Palindrome";
+                } else
+                    result = "It's a Palindrome";
+            }
+            System.out.println(result);
         }
 
     static int sum(int[] numbers) {
